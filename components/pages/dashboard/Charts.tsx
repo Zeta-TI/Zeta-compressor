@@ -1,9 +1,8 @@
-import LineChart from "./LineChart";
-import AreaChart from "./AreaChart";
-import { useSession } from "next-auth/react";
+'use client'
+import LineChart from "./line-chart";
+import AreaChart from "./area-chart";
 import { useEffect, useState } from "react";
-import { URL_API } from '../../../utils/constants';
-
+import CompressorLogs from "@/controllers/compressorLogs";
 
 interface Logs {
   dates: string[],
@@ -16,93 +15,31 @@ interface UserCompressor {
 
 export default function GraficosDashboard( { idCompressor }: UserCompressor) {
 
-  const { data: session } = useSession()
+  const compressorId: string = idCompressor
+  const [dailyDate, setDailyDate] = useState()
+  const [dailyValue, setDailyValue] = useState()
 
-  const [daily, setDaily] = useState<Logs>()
-  const [accumulated, setAccumulated] = useState<Logs>()
-
-  // ----------------------------------------------------
-
-  function formatarDataParaString(data: Date): string {
-    const dia = String(data.getDate()).padStart(2, '0');
-    const mes = String(data.getMonth() + 1).padStart(2, '0'); // Lembre-se que os meses começam do zero
-    const ano = String(data.getFullYear()).slice(-2);
-
-    return `${dia}/${mes}/${ano}`
-  }
-
-  // ----------------------------------------------------
-
-  function formatarStringParaMinutos(dados: string): number {
-    const hora = Number(dados.substring(0, 2))
-    const minutos = Number(dados.substring(3, 5))
-    const total = (hora * 60) + (minutos)
-
-    return total
-  }
-
-  // ----------------------------------------------------
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  function analisarDados(dados: any[]): Logs {
-    const arrayDatas: string[] = []
-    const arrayRuntimes: number[] = []
-
-    dados.map((item: any) => {
-      const date = new Date(item.log_date)
-      const runTime = item.total_runtime
-
-      const newRuntime = formatarStringParaMinutos(runTime)
-      arrayRuntimes.push(newRuntime)
-
-      const newDate = formatarDataParaString(date)
-      arrayDatas.push(newDate)
-    })
-
-    const result: Logs = {
-      dates: arrayDatas,
-      runtimes: arrayRuntimes
-    }
-
-    return result
-  }
+  const [accumulatedDate, setAccumulatedDate] = useState<any[]>()
+  const [accumulatedValue, setAccumulatedValue] = useState<any[]>()
 
   useEffect(() => {
-    
     const fetchData = async () => {
-      
-      try {
-        const resp = await fetch(`${URL_API}/compressors/${idCompressor}/logs`, {
-          next: {
-            revalidate: 300,
-          },
-        })
+      const resp = await CompressorLogs(compressorId)
+      const arrayDailyDates: any = resp.arrayDailyRuntimes.arrayDeDatasFormatadas
+      const arrayDailyValues: any = resp.arrayDailyRuntimes.arrayDeValores
 
-        if (!resp.ok) {
-          throw new Error('Failed to fetch data')
-        }
+      const arrayAccumulatedDates: any = resp.arrayDailyRuntimeAccumulated.arrayDeDatasFormatadas
+      const arrayAccumulatedValues: any = resp.arrayDailyRuntimeAccumulated.arrayDeValores
 
-        const resposta = await resp.json()
+      setDailyDate(arrayDailyDates)
+      setDailyValue(arrayDailyValues)
 
-        let daily_runtime_accumulated = resposta.daily_runtime_accumulated
-        daily_runtime_accumulated = analisarDados(daily_runtime_accumulated)
+      setAccumulatedDate(arrayAccumulatedDates)
+      setAccumulatedValue(arrayAccumulatedValues)
 
-        // ----------------------------------------------
-
-        let daily_runtimes = resposta.daily_runtime
-        daily_runtimes = analisarDados(daily_runtimes)
-
-        setDaily(daily_runtimes)
-        setAccumulated(daily_runtime_accumulated)
-
-      } catch (error) {
-        console.error(error);
-      }
     };
-
     fetchData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session]);
+  }, [compressorId]);
 
   return (
     <>
@@ -112,7 +49,7 @@ export default function GraficosDashboard( { idCompressor }: UserCompressor) {
             <div className='md:pr-4 lg:pr-12 xl:pr-16'>
               <div className="px-6 py-5 font-semibold border-b border-gray-100">Tempo de operação acumulado</div>
               <div className="p-2 max-w-full mx-auto md:max-w-none h-auto">
-                <AreaChart daily_runtime_accumulated={accumulated?.runtimes} log_date={accumulated?.dates} />
+                <AreaChart accumulated={accumulatedValue} date={accumulatedDate} />
               </div>
             </div>
           </div>
@@ -120,7 +57,7 @@ export default function GraficosDashboard( { idCompressor }: UserCompressor) {
             <div className='md:pr-4 lg:pr-12 xl:pr-16'>
               <div className="px-6 py-5 font-semibold border-b border-gray-100">Tempo de utilização por hora</div>
               <div className="p-2 max-w-full mx-auto md:max-w-none h-auto">
-                <LineChart daily_runtime={daily?.runtimes} log_date={daily?.dates} />
+                <LineChart daily_runtime={dailyValue} log_date={dailyDate} />
               </div>
             </div>
           </div>
