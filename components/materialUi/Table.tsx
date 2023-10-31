@@ -32,32 +32,31 @@ const StyledTableRow = styled(TableRow)(({ theme }: any) => ({
 }));
 
 interface DadosCompressor {
-    name: string,
-    serial_number: number
+  name: any,
+  serial_number: any
 }
 
 const TableDashboard = ({name, serial_number}: DadosCompressor) => {
-
   return (
     <>
-        <TableContainer component={Paper}>
-            <Table aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                    <StyledTableCell align="left">Nome do compressor</StyledTableCell>
-                    <StyledTableCell align="left">Serial&nbsp;</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    <StyledTableRow key={name}>
-                    <StyledTableCell component="th" scope="row">
-                        {name}
-                    </StyledTableCell>
-                    <StyledTableCell align="left">{serial_number}</StyledTableCell>
-                    </StyledTableRow>
-                </TableBody>
-            </Table>
-        </TableContainer>
+      <TableContainer component={Paper}>
+        <Table aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="left">Nome do compressor</StyledTableCell>
+              <StyledTableCell align="left">Serial&nbsp;</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <StyledTableRow key={name}>
+              <StyledTableCell component="th" scope="row">
+                  {name}
+              </StyledTableCell>
+              <StyledTableCell align="left">{serial_number}</StyledTableCell>
+            </StyledTableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 }
