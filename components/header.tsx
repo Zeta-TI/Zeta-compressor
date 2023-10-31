@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import MobileMenu from './mobile-menu'
 import Logo from '../public/images/Zeta-Logo.png'
-import DialogAlert from './radix/alertDialog'
+import DialogAlert from './radix/alert-dialog'
 
 export default function Header() {
 
