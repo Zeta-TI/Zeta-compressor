@@ -1,32 +1,21 @@
 'use client'
 
 import Image from "next/image"
-import Header from "../../../components/header"
+import Header from "../../../../components/header"
+import DialogDemo from "../../../../components/radix/dialog";
+import DeleteDialog from '../../../../components/radix/delete-dialog'
 
-import { useState } from "react";
-import { useSession } from "next-auth/react";
-import DialogDemo from "../../../components/radix/Dialog";
-import DeleteDialog from '../../../components/radix/deleteDialog'
+import { useRouter } from 'next/navigation'
 
-import Loading from "../../../components/loading";
-
-import { useEffect } from 'react'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
-import NProgress from 'nprogress'
+import RootProgress from "@/config-layout/nprogress";
+import SessionIdUser from "@/services/SessionID";
 
 export default function Profile() {
 
-    const { data: session, status } = useSession();
+    const Session = SessionIdUser()
     const router = useRouter();
 
-    const pathname = usePathname()
-    const searchParams = useSearchParams()
-    useEffect(() => {
-        NProgress.done();
-        return () => {
-            NProgress.start();
-        };
-    }, [pathname, searchParams]);
+    RootProgress();
 
     // const [imagem, setImagem] = useState<undefined>();
 
@@ -52,11 +41,7 @@ export default function Profile() {
 
 
     if (status === 'unauthenticated') {
-        router.push('/signin')
-    }
-
-    if (status === 'loading') {
-        <Loading />
+        router.push('/sign-in')
     }
 
     if (status === 'authenticated') {
@@ -82,7 +67,7 @@ export default function Profile() {
                             </div>
 
                             <div className="flex items-center space-x-2 mt-2">
-                                <p className="text-2xl">{session?.user.name}</p>
+                                <p className="text-2xl">{Session?.user.id}</p>
                                 <span className="bg-blue-500 rounded-full p-1" title="Verified">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-gray-100 h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 
@@ -110,19 +95,19 @@ export default function Profile() {
                                 <ul className="mt-2 text-gray-700">
                                     <li className="flex border-y py-2">
                                         <span className="font-bold w-24">Nome:</span>
-                                        <span className="text-gray-700">{session?.user.name}</span>
+                                        <span className="text-gray-700">{Session?.user.name}</span>
                                     </li>
                                     <li className="flex border-b py-2">
                                         <span className="font-bold w-24">Telefone:</span>
-                                        <span className="text-gray-700">{session?.user.contact}</span>
+                                        <span className="text-gray-700">{Session?.user.contact}</span>
                                     </li>
                                     <li className="flex border-b py-2">
                                         <span className="font-bold w-24">Email:</span>
-                                        <span className="text-gray-700">{session?.user.email}</span>
+                                        <span className="text-gray-700">{Session?.user.email}</span>
                                     </li>
                                     <li className="flex border-b py-2">
                                         <span className="font-bold w-24">CPF:</span>
-                                        <span className="text-gray-700">{session?.user.cpf}</span>
+                                        <span className="text-gray-700">{Session?.user.cpf}</span>
                                     </li>
                                 </ul>
                             </div>
