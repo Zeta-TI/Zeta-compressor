@@ -1,9 +1,8 @@
 'use client'
 
 import React, { useState } from 'react';
-import { URL_API } from '../../../utils/constants'; 
 import { useEffect } from 'react'
-import { useSession } from 'next-auth/react';
+import CompressorLogs from '@/controllers/compressorLogs';
 
 interface UserCompressor {
     idCompressor: string
@@ -11,38 +10,23 @@ interface UserCompressor {
 
 export default function CardDashboard ({ idCompressor }: UserCompressor) {
 
-    const { data: session } = useSession()
-    const [worked, setWorked] = useState()
+    const [worked, setWorked] = useState(0)
     const [eletrical, setEletrical] = useState()
+
+    const compressorId: string | any = idCompressor 
 
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            
-            const resp = await fetch (`${URL_API}/compressors/${idCompressor}/logs`, {
-                next: {
-                    revalidate: 300,
-                },
-            })
-    
-            if (!resp.ok) {
-                throw new Error('Failed to fetch data')
-            }
-            
-            const resposta = await resp.json()
-            const eletricalSwitching  = resposta.hour_electrical_switching_count
-            const workedHours = resposta.total_runtime
+
+            const resp = await CompressorLogs(compressorId)
+            const { eletricalSwitching, workedHours } = resp
 
             setWorked(workedHours)
             setEletrical(eletricalSwitching)
-        
-          } catch (error) {
-            console.error(error);
-          }
         };
     
         fetchData();
-      }, [session, idCompressor]);
+      }, [compressorId]);
 
     return (
         <section className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">

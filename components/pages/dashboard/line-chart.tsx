@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from "highcharts/highstock";
 
@@ -9,11 +9,12 @@ interface Props {
 
 const LineChart = ( { log_date, daily_runtime }: Props) => {
 
-  // console.log(log_date)
-  // console.log(daily_runtime)
-
   const [hoverData, setHoverData] = useState(null);
-  const [chartOptions, setChartOptions] = useState({
+  const [chartOptions, setChartOptions] = useState<any>()
+
+  useEffect(() => {
+
+  const data = {
     chart: {
       type: 'line',
       dropShadow: {
@@ -90,7 +91,9 @@ const LineChart = ( { log_date, daily_runtime }: Props) => {
         }
       }
     }
-  });
+  }
+  setChartOptions(data)
+}, [log_date, daily_runtime])
 
   return (
       <div>
