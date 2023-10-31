@@ -1,18 +1,29 @@
 'use client'
 
 import Image from "next/image"
+<<<<<<< Updated upstream:app/dashboard/perfil/page.tsx
 import Header from "../../../components/header"
+=======
+import Header from "../../../../components/header"
+import DialogDemo from "@/components/radix/Dialog";
+import DeleteDialog from "@/components/radix/delete-dialog";
+>>>>>>> Stashed changes:app/(admin)/dashboard/perfil/page.tsx
 
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import DialogDemo from "../../../components/radix/Dialog";
 import DeleteDialog from '../../../components/radix/deleteDialog'
 
+<<<<<<< Updated upstream:app/dashboard/perfil/page.tsx
 import Loading from "../../../components/loading";
 
 import { useEffect } from 'react'
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import NProgress from 'nprogress'
+=======
+import RootProgress from '../../../../config-layout/nprogress'
+import SessionIdUser from "@/services/SessionID";
+>>>>>>> Stashed changes:app/(admin)/dashboard/perfil/page.tsx
 
 export default function Profile() {
 
