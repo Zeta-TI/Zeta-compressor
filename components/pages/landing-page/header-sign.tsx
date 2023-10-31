@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react'
 
-import { useSession, signIn, signOut } from "next-auth/react"
+import { signIn } from "next-auth/react"
 import Link from 'next/link'
 import Image from 'next/image'
-import MobileMenuExp from './mobile-menuExp'
+import MobileMenuExp from './mobile-sign'
 import Logo from '../../../public/images/Zeta-Logo.png'
 
 export default function HeaderExp() {

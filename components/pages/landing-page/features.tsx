@@ -96,9 +96,7 @@ export default function Features() {
               <h4 className="h4 mb-2 text-gray-100">Redução de Ruído</h4>
               <p className="text-lg text-gray-400 text-center"><Balancer>Muitos modelos de compressores inteligentes são projetados com isolamento acústico avançado, tornando-os mais silenciosos e adequados para ambientes de trabalho sensíveis ao ruído.</Balancer></p>
             </div>
-
           </div>
-
         </div>
       </div>
     </section>
