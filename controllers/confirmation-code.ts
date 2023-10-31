@@ -1,4 +1,4 @@
-import { URL_API } from "@/utils/constants";
+import { URL_API } from "../utils/constants"; 
 
 export default async function ConfirmationCode(email: string, confirmCode:string) {
 
@@ -11,5 +11,5 @@ export default async function ConfirmationCode(email: string, confirmCode:string
   });
   
   return res
-  
+
 }

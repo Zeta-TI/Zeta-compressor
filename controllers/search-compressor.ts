@@ -1,4 +1,4 @@
-import { URL_API } from "@/utils/constants"
+import { URL_API } from "../utils/constants"
 
 export default async function SearchCompressor( idCompressor: any) {
 

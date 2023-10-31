@@ -3,23 +3,16 @@
 import React from 'react';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { URL_API } from '../../utils/constants';
-<<<<<<< Updated upstream
-import { signOut, useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-=======
 import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import  SessionIdUser from '../../services/SessionID'
->>>>>>> Stashed changes
 
 import { ToastContainer, toast } from 'react-toastify';
 
 const DeleteDialog = () => {
-<<<<<<< Updated upstream
-    const { data: session } = useSession();
-=======
+
     const session = SessionIdUser();
->>>>>>> Stashed changes
+
     const router = useRouter();
     const Origin = process.env.NEXT_PUBLIC_AWS_ORIGIN ?? '';
     const region = process.env.NEXT_PUBLIC_AWS_REGION ?? '';

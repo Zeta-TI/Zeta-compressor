@@ -1,4 +1,4 @@
-import { URL_API } from "@/utils/constants";
+import { URL_API } from "../utils/constants";
 
 export default async function createUser(name: string, email: string, cpf: string, password: string, contact: string) {
   const Origin = process.env.NEXT_PUBLIC_AWS_ORIGIN;
