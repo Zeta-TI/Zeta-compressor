@@ -1,30 +1,19 @@
 'use client'
 
-import React from "react";
+import React, { useState } from "react";
 import Link from 'next/link';
-import { useState } from 'react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
-import { signIn, useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react';
 import { ToastContainer, toast } from 'react-toastify';
+import HeaderExp from '../../../components/pages/landing-page/header-sign';
 
-import Loading from '../../components/loading';
-import HeaderExp from '../../components/pages/landingPage/headerExp';
-
-import { useEffect } from 'react'
-import NProgress from 'nprogress'
+import SessionStatus from "@/services/SessionStatus";
 
 export default function LoginPage() {
-  const { status } = useSession();
-  const router = useRouter();
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
 
-  useEffect(() => {
-    NProgress.done();
-    return () => {
-      NProgress.start();
-    };
-  }, [pathname, searchParams]);
+  const status = SessionStatus()
+  const router = useRouter();
+
 
   // =========================================== 
 
@@ -38,10 +27,10 @@ export default function LoginPage() {
     signIn('credentials', {
       ...data,
       redirect: false,
-    });
+    })
 
-    toast.success('Logado com sucesso!')
-    router.push('/home', { scroll: false });
+      toast.success('Logado com sucesso!')
+      router.push('/home', { scroll: false });
   }
 
   // --------------------------------------
@@ -50,9 +39,6 @@ export default function LoginPage() {
     router.push('/home')
   }
 
-  if (status === 'loading') {
-    return <Loading />
-  }
 
   if (status === 'unauthenticated') {
     return (
