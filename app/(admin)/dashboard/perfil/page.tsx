@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Header from "../../../../components/header"
-import DialogDemo from "../../../../components/radix/dialog";
+import DialogDemo from "../../../../components/radix/Dialog";
 import DeleteDialog from '../../../../components/radix/delete-dialog'
 
 import { useRouter } from 'next/navigation'
