@@ -3,13 +3,14 @@
 import TableDashboard from "../../materialUi/Table"
 import { URL_API } from '../../../utils/constants'; 
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { Session } from "next-auth";
 
 interface UserCompressor {
-  idCompressor: number
+  idCompressor: number,
+  session: Session
 }
 
-export default function DadosCompressor({ idCompressor }:UserCompressor ) {
+export default function DadosCompressor({ idCompressor, session }:UserCompressor ) {
 
 
   const [nameCompressor, setNameCompressor] = useState('')

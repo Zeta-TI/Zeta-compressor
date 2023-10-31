@@ -4,12 +4,12 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 
 import Header from "../../../../components/header";
-import Card from '../../../../components/pages/dashboard/card-dashboard'
-import DadosCompressor from "../../../../components/pages/dashboard/dados-compressor";
-import GraficosDashboard from '@/components/pages/dashboard/Charts';
 
-import SessionStatus from '@/services/SessionStatus';
-import SessionIdUser from '@/services/SessionID';
+import SessionStatus from '../../../../services/SessionStatus';
+import SessionIdUser from '../../../../services/SessionID';
+import CardDashboard from './../../../../components/pages/dashboard/DashboardCard';
+import DadosCompressor from './../../../../components/pages/dashboard/CompressorData';
+import GraficosDashboard from './../../../../components/pages/dashboard/Charts';
 
 export default function Dashboard({ params }: any) {
 
@@ -32,7 +32,7 @@ export default function Dashboard({ params }: any) {
           <div className="flex-grow text-gray-800">
             <Header />
             <main className="p-6 sm:p-12 space-y-6 ">
-                <Card 
+                <CardDashboard 
                     idCompressor={params.id} 
                 />
                 <DadosCompressor 

@@ -1,5 +1,4 @@
-
-import { URL_API } from "@/utils/constants"
+import { URL_API } from "../utils/constants"
 
 interface Compressor {
     id: number,
