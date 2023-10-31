@@ -1,3 +1,4 @@
+import  SessionIdUser  from "@/services/SessionID";
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from 'next-auth/providers/credentials';
@@ -79,6 +80,7 @@ const authOptions: NextAuthOptions = {
             if (token === null){
                 return null;
             }
+
             session.AccessToken = token.AccessToken;
             session.IdToken = token.IdToken;
             session.RefreshToken = token.RefreshToken;
@@ -94,7 +96,7 @@ const authOptions: NextAuthOptions = {
     },
 
     pages: {
-        signIn: '/signin',
+        signIn: '/sign-in',
         signOut: '/',
         newUser: '/dashboard'
     },
