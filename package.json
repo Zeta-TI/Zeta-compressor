@@ -10,6 +10,12 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "exports": {
+    "aws4fetch": {
+      "import": "/dist/aws4fetch.cjs.js",
+      "require": "/dist/aws4fetch.umd.js"
+    }
+  },
   "dependencies": {
     "@cush/aws4fetch": "^1.0.3",
     "@emotion/react": "^11.11.1",
