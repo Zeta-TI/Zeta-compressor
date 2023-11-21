@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 
 import Card from '../../../../components/pages/dashboard/card-dashboard'
 import DadosCompressor from "../../../../components/pages/dashboard/dados-compressor";
-import Grafico from "../../../../components/pages/dashboard/charts";
+import Grafico from "../../../../components/pages/dashboard/Charts";
 
 import SessionStatus from '@/services/session-status';
 import SessionIdUser from '@/services/session-id';
