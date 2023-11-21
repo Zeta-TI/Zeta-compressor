@@ -40,6 +40,7 @@ export default async function CompressorLogs( idCompressor: string ) {
   const eletricalSwitching  = resposta.hour_electrical_switching_count
   const workedHours: number = resposta.total_runtime
   const percent_lifespan: number = resposta.percent_lifespan
+  const on_motor: boolean = resposta.is_motor_on
 
   const daily_runtime_accumulated = resposta.daily_runtime_accumulated;
   const arrayDailyRuntimeAccumulated = analisarDados(daily_runtime_accumulated);
@@ -54,6 +55,7 @@ export default async function CompressorLogs( idCompressor: string ) {
       workedHours,
       percent_lifespan,
       arrayDailyRuntimeAccumulated,
-      arrayDailyRuntimes
+      arrayDailyRuntimes,
+      on_motor
   }
 }

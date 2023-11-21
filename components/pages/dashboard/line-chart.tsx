@@ -61,7 +61,7 @@ const LineChart = ( { log_date, daily_runtime }: Props) => {
     xAxis: {
       categories: log_date,
       title: {
-        text: 'Minutos por dia'
+        text: 'Dias da semana'
       }
     },
     yAxis: {

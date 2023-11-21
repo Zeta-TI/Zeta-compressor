@@ -18,7 +18,7 @@ export default function SpinnerPercent (props: CircularProgressProps & { value: 
             left: 0,
             bottom: 0,
             right: 0,
-            height: 200,
+            height: 320,
             position: 'absolute',
             display: 'flex',
             alignItems: 'center',
@@ -28,7 +28,7 @@ export default function SpinnerPercent (props: CircularProgressProps & { value: 
           <Typography
             variant="caption"
             component="div"
-            height={180}
+            height={300}
             color="text.secondary"
           >{`${Math.round(props.value)}%`}</Typography>
       </Box>

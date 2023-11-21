@@ -11,6 +11,7 @@ interface Props {
 
 const AreaChart = ({ date, accumulated }: Props) => {
 
+  const [hoverData, setHoverData] = useState(null);
   const [chartOptions, setChartOptions] = useState<any>()
   useEffect(() => {
     const data = {
@@ -38,7 +39,7 @@ const AreaChart = ({ date, accumulated }: Props) => {
         { 
           name: "Motor Elétrico",
           data: accumulated,
-        }
+        },
       ],
     }
 

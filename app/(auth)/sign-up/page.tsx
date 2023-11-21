@@ -1,51 +1,20 @@
-"use client"
 
-import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import React from "react";
+import { ToastContainer } from 'react-toastify';
 import Link from 'next/link'
 
-import HeaderExp from '../../../components/pages/landing-page/header-sign'
-import createUser from "@/controllers/createUser";
+import SignUpContext from "@/context/sign-up-context";
 
 export default function SignUp() {
 
-  const router = useRouter();
-
-  // variáveis utilizadas
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [contact, setContact] = useState('');
-  const [password, setPassword] = useState('');
-
-  const registerUser = async (e: any) => {
-    e.preventDefault();
-
-    const resp = await createUser(name, email, cpf, password, contact )
-
-    localStorage.setItem("emailUser",email);
-
-    if(resp.status === 404){
-      toast.error('Não foi possível realizar o cadastro. Tente novamente')
-    }
-    if (resp.ok) {
-      router.push("/signup/confirmCode");
-    }
-  }
-
   return (
     <>
-      <HeaderExp />
       <section className="relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="pt-32 pb-12 md:pt-40 md:pb-20">
-
             <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
               <h1 className="h1 text-gray-100">Bem-vindo. Existimos para facilitar o crescimento do seu empreendimento.</h1>
             </div>
-
             <div className="max-w-sm mx-auto">
               <form>
                 <div className="flex flex-wrap -mx-3">
@@ -73,46 +42,9 @@ export default function SignUp() {
                 <div className="text-gray-400">Or, register with your email</div>
                 <div className="border-t border-gray-700 border-dotted grow ml-3" aria-hidden="true"></div>
               </div>
-              <form onSubmit={registerUser}>
-                <div className="flex flex-wrap -mx-3 mb-4">
-                  <div className="w-full px-3">
-                    <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="full-name">Nome<span className="text-red-600">*</span></label>
-                    <input id="full-name" onChange={(e) => setName(e.target.value)} type="text" className="form-input w-full text-gray-300" placeholder="Primeiro nome e sobrenome" required />
-                  </div>
-                </div>
-                <div className="flex flex-wrap -mx-3 mb-4">
-                  <div className="w-full px-3">
-                    <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="email">Email <span className="text-red-600">*</span></label>
-                    <input id="email" type="email" onChange={(e) => setEmail(e.target.value)} className="form-input w-full text-gray-300" placeholder="you@gmail.com" required />
-                  </div>
-                </div>
-                <div className="flex flex-wrap -mx-3 mb-4">
-                  <div className="w-full px-3">
-                    <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="company-name">Cpf <span className="text-red-600">*</span></label>
-                    <input id="company-name" onChange={(e) => setCpf(e.target.value)} type="text" className="form-input w-full text-gray-300" placeholder="Seu CPF" required />
-                  </div>
-                </div>
-                <div className="flex flex-wrap -mx-3 mb-4">
-                  <div className="w-full px-3">
-                    <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="company-name">Telefone <span className="text-red-600">*</span></label>
-                    <input id="company-name" onChange={(e) => setContact(e.target.value)} type="text" className="form-input w-full text-gray-300" placeholder="Seu telefone" required />
-                  </div>
-                </div>
-                <div className="flex flex-wrap -mx-3 mb-4">
-                  <div className="w-full px-3">
-                    <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="password">Senha <span className="text-red-600">*</span></label>
-                    <input id="password" type="password" onChange={(e) => setPassword(e.target.value)} className="form-input w-full text-gray-300" placeholder="Senha (10 caracteres)" required />
-                  </div>
-                </div>
-                <div className="text-sm text-gray-500 text-center">
-                  Concordo em ser contatado pela Zeta Tecnologia sobre esta oferta de acordo com a Política de Privacidade da Zeta. <Link href="#" className="underline text-gray-400 hover:text-gray-200 hover:no-underline transition duration-150 ease-in-out">Política de Privacidade</Link>.
-                </div>
-                <div className="flex flex-wrap -mx-3 mt-6">
-                  <div className="w-full px-3">
-                    <button type='submit' className="btn text-white bg-purple-600 hover:bg-purple-700 w-full">Sign up</button>
-                  </div>
-                </div>
-              </form>
+              {/* FORMULÁRIO */}
+              <SignUpContext />
+
               <div className="text-gray-400 text-center mt-6">
                 Já usa o Compressor | Zeta? <Link href="/signin" className="text-purple-600 hover:text-gray-200 transition duration-150 ease-in-out">Sign in</Link>
               </div>

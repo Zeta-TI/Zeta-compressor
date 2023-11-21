@@ -3,13 +3,12 @@
 import React from 'react'
 import { useRouter } from 'next/navigation'
 
-import Header from "../../../../components/header";
 import Card from '../../../../components/pages/dashboard/card-dashboard'
 import DadosCompressor from "../../../../components/pages/dashboard/dados-compressor";
-import Grafico from "../../../../components/pages/dashboard/Charts";
+import Grafico from "../../../../components/pages/dashboard/charts";
 
-import SessionStatus from '@/services/SessionStatus';
-import SessionIdUser from '@/services/SessionID';
+import SessionStatus from '@/services/session-status';
+import SessionIdUser from '@/services/session-id';
 
 export default function Dashboard({ params }: any) {
 
@@ -30,7 +29,6 @@ export default function Dashboard({ params }: any) {
       <>
         <section className="flex bg-gray-100">
           <div className="flex-grow text-gray-800">
-            <Header />
             <main className="p-6 sm:p-12 space-y-6 ">
                 <Card 
                     idCompressor={params.id} 

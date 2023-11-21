@@ -1,6 +1,7 @@
 'use client'
 
 import TableDashboard from "../../materialUi/Table"
+import { ButtonMotor } from "./button-motor";
 import { useState, useEffect } from "react";
 import CompressorLogs from "@/controllers/compressorLogs";
 import SpinnerPercent from './spinner-percent';
@@ -16,6 +17,7 @@ interface UserCompressor {
 export default function DadosCompressor({ idCompressor, session }:UserCompressor ) {
 
   const compressorId = idCompressor
+  const [IsActive, setActive] = useState<boolean>()
 
   const [nameCompressor, setNameCompressor] = useState<any>()
   const [serialCompressor, setSerialCompressor] = useState<any>()
@@ -32,9 +34,10 @@ export default function DadosCompressor({ idCompressor, session }:UserCompressor
 
       const res = await CompressorLogs(compressorId)
       const percent_lifespans: number = res.percent_lifespan
-      console.log(percent_lifespans)
+      const verify: boolean = res.on_motor;
 
       setLifespan(percent_lifespans)
+      setActive(verify)
     };
     fetchData();
   }, [compressorId, session.user.id]);
@@ -53,8 +56,8 @@ export default function DadosCompressor({ idCompressor, session }:UserCompressor
           </div>
           <div className="max-w-xl md:max-w-none md:w-full mx-auto sm:col-span-2 md:col-span-6 lg:col-span-6 mb-10 bg-white shadow rounded-lg">
             <div className='md:pr-4 lg:pr-12 xl:pr-16'>
-              <div className="px-6 py-5 font-semibold border-b border-gray-100">Dados do compressor</div>
-              <div className="p-2 max-w-full mx-auto md:max-w-none h-auto">
+              <div className="px-6 py-5 font-semibold border-b border-gray-100">Vida do compressor</div>
+              <div className="p-4 max-w-full mx-auto md:max-w-none h-auto">
                 <SpinnerPercent value={percent_lifespan} />
               </div>
             </div>
