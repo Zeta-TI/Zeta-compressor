@@ -7,6 +7,8 @@ import Header from '../components/landing-page/header'
 import Footer from '../components/landing-page/footer'
 import Newsletter from '@/components/landing-page/newsletter'
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
 
   return (

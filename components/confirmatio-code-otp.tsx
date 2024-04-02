@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
 
 import { OTPInput } from 'input-otp'
@@ -11,7 +11,7 @@ import { Button } from "./ui/button";
 
 export default function ConfirmationCodeOTP() {
 
-      // Inspired by Stripe's MFA input.
+  // Inspired by Stripe's MFA input.
   function FakeDash() {
     return (
       <div className="flex w-10 justify-center items-center">
@@ -52,7 +52,7 @@ export default function ConfirmationCodeOTP() {
   const router = useRouter();
   const [confirmCode, setConfirmCode] = useState('');
 
-  const registerUser = async (e: any) => {
+  const registerUser = async (e: FormEvent) => {
     e.preventDefault();
     const email: any = localStorage.getItem("emailUser");
     const resp = await ConfirmationCode(email, confirmCode)
@@ -66,39 +66,39 @@ export default function ConfirmationCodeOTP() {
       router.push('/sign-up')
     }
   }
-  
+
   return (
     <>
       <form onSubmit={registerUser}>
         <div className="flex flex-wrap -mx-3 mt-6">
           <div className="w-full px-3">
             <OTPInput
-                maxLength={6}
-                containerClassName="group flex items-center justify-center has-[:disabled]:opacity-30 mb-4"
-                onChange={setConfirmCode}
-                value={confirmCode}
-                render={({ slots }) => (
-                    <>
-                        <div className="flex">
-                            {slots.slice(0, 3).map((slot, idx) => (
-                                <Slot key={idx} {...slot} />
-                            ))}
-                        </div>
+              maxLength={6}
+              containerClassName="group flex items-center justify-center has-[:disabled]:opacity-30 mb-4"
+              onChange={setConfirmCode}
+              value={confirmCode}
+              render={({ slots }) => (
+                <>
+                  <div className="flex">
+                    {slots.slice(0, 3).map((slot, idx) => (
+                      <Slot key={idx} {...slot} />
+                    ))}
+                  </div>
 
-                        <FakeDash />
+                  <FakeDash />
 
-                        <div className="flex">
-                            {slots.slice(3).map((slot, idx) => (
-                                <Slot key={idx} {...slot} />
-                            ))}
-                        </div>
-                    </>
-                )}
-            />        
+                  <div className="flex">
+                    {slots.slice(3).map((slot, idx) => (
+                      <Slot key={idx} {...slot} />
+                    ))}
+                  </div>
+                </>
+              )}
+            />
             <Button type='submit' className=" text-white text-1xl bg-purple-600 hover:bg-purple-700 w-full rounded-md p-2 m-2 text-center">Enviar</Button>
           </div>
         </div>
-      </form>   
+      </form>
     </>
   )
 }

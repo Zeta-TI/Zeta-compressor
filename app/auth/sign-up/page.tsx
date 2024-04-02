@@ -1,8 +1,8 @@
 
 import React from "react";
-import { ToastContainer } from 'react-toastify';
-import Link from 'next/link'
 import { SignUpForm } from "./credentials/sign-up-form";
+
+export const dynamic = "force-dynamic";
 
 export default function SignUp() {
 

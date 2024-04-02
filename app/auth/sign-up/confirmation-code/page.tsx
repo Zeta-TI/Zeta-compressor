@@ -2,7 +2,9 @@ import React from "react";
 import { ToastContainer } from 'react-toastify';
 import ConfirmationCodeOTP from "@/components/confirmatio-code-otp";
 
-export default function ConfirmCode() {
+export const dynamic = "force-dynamic";
+
+export default function ConfirmationCode() {
 
   return (
     <>

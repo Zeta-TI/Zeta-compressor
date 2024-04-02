@@ -21,7 +21,9 @@ export const metadata: Metadata = {
   title: 'Perfil',
 }
 
-export default async function ProfilePage() {
+export const dynamic = "force-dynamic";
+
+export default async function Profile() {
   const session = await auth()
 
   if (!session || !session.user) {
