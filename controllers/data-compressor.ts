@@ -1,4 +1,3 @@
-
 import { URL_API } from "@/utils/constants"
 
 interface Compressor {
@@ -8,7 +7,7 @@ interface Compressor {
     serial_number: number
 }
 
-export default async function CompressorsClient( session: any) {
+export default async function CompressorsClient(session: any) {
 
     const res = await fetch(`${URL_API}/compressors/client/${session}`)
     const resp = await res.json()

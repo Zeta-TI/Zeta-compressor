@@ -5,15 +5,15 @@ import { usePathname, useSearchParams } from 'next/navigation'
 import NProgress from 'nprogress'
 
 export default function RootProgress() {
-    const pathname = usePathname()
-    const searchParams = useSearchParams()
-  
-    useEffect(() => {
-      NProgress.done();
-      return () => {
-        NProgress.start();
-      };
-    }, [pathname, searchParams]);
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
-    return null
+  useEffect(() => {
+    NProgress.done();
+    return () => {
+      NProgress.start();
+    };
+  }, [pathname, searchParams]);
+
+  return null
 }

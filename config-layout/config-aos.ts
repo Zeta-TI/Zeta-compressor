@@ -4,8 +4,7 @@ import { useEffect } from "react"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-export default function ConfigAos () {
-
+export default function ConfigAos() {
   useEffect(() => {
     AOS.init({
       once: true,

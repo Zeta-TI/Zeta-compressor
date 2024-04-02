@@ -46,7 +46,6 @@ export default async function CompressorLogs(idCompressor: string) {
 
   const daily_runtime_accumulated = resposta.daily_runtime_accumulated;
 
-
   const arrayDailyRuntimeAccumulated = analisarDados(daily_runtime_accumulated);
 
   // ----------------------------------------------
