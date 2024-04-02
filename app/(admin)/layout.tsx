@@ -1,17 +1,12 @@
-import React  from "react"
+import React from "react"
+import { Header } from "@/components/header-dashboard";
 
-
-import { Metadata } from "next";
-
-import Header from "../../components/header";
-
-export default function AdminLayout({children}: {children: React.ReactNode}) {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
 
   return (
-    <div>
+    <div className="flex min-h-screen flex-col bg-white dark:bg-slate-950">
       <Header />
-      {children}
+      <div className="flex flex-1 flex-col gap-4 p-8 pt-6">{children}</div>
     </div>
   )
 }
- 

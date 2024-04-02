@@ -1,129 +1,86 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Additional styles */
-@import 'additional-styles/utility-patterns.css';
-@import 'additional-styles/range-slider.css';
-@import 'additional-styles/toggle-switch.css';
-@import 'additional-styles/theme.css';
-@import 'additional-styles/cards.css';
-@import 'additional-styles/skeleton.module.css';
 
-@import 'tailwindcss/utilities';
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+  }
 
-.btn {
-  @apply flex gap-2 items-center justify-center py-2 px-4 font-semibold shadow-md rounded-lg
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 100 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
 }
-.btn.btn-light {
-  @apply bg-white text-gray-500
-}
-.btn.btn-danger {
-  @apply text-white bg-red-600 shadow-red-400/40
-}
 
-/* Additional Tailwind directives: https://tailwindcss.com/docs/functions-and-directives/#responsive */
-@layer utilities {
-    .rtl {
-        direction: rtl;
-    }
-}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
 
-/* See Alpine.js: https://github.com/alpinejs/alpine#x-cloak */
-[x-cloak=""] {
-    display: none;
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    outline: none;
-    box-sizing: border-box;
-  }
-  
-  .container {
-    max-width: 640px;
-    margin: 0 auto;
-  }
-  
-  .hidden {
-    display: none;
-  }
+.shiki {
+  @apply !bg-transparent !whitespace-pre-wrap !break-all;
+}
 
-  /* input[type="file"] {
-    display: none;
-  } */
+/* html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+} */
 
+.apexcharts-svg {
+  @apply overflow-visible;
+}
 
-  .loader {
-    border-top-color: #3498db;
-    -webkit-animation: spinner 1.5s linear infinite;
-    animation: spinner 1.5s linear infinite;
-  }
-  
-  @-webkit-keyframes spinner {
-    0% {
-      -webkit-transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes spinner {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  /* inputs */
-  .personal-image {
-    text-align: center;
-  }
-  .personal-image input[type="file"] {
-    display: none;
-  }
-  .personal-figure {
-    position: relative;
-    width: 120px;
-    height: 120px;
-  }
-  .personal-avatar {
-    cursor: pointer;
-    width: 120px;
-    height: 120px;
-    box-sizing: border-box;
-    border-radius: 100%;
-    border: 2px solid transparent;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
-    transition: all ease-in-out .3s;
-  }
-  .personal-avatar:hover {
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.5);
-  }
-  .personal-figcaption {
-    cursor: pointer;
-    position: absolute;
-    top: 0px;
-    width: inherit;
-    height: inherit;
-    border-radius: 100%;
-    opacity: 0;
-    background-color: rgba(0, 0, 0, 0);
-    transition: all ease-in-out .3s;
-  }
-  .personal-figcaption:hover {
-    opacity: 1;
-    background-color: rgba(0, 0, 0, .5);
-  }
-  .personal-figcaption > .image {
-    margin-top: 29.5px;
-    margin-left: 30px;
-    width: 60px;
-    height: 50px;
-  }
+.apexcharts-tooltip {
+  @apply !shadow-none border;
+}
 
 
 /* Make clicks pass-through */
@@ -132,7 +89,7 @@
 }
 
 #nprogress .bar {
-  background: #FFF200;
+  background: #002fff;
 
   position: fixed;
   z-index: 1031;
@@ -150,7 +107,7 @@
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px #FFF200, 0 0 5px #FFF200;
+  box-shadow: 0 0 10px #002fff, 0 0 5px #002fff;
   opacity: 1.0;
 
   -webkit-transform: rotate(3deg) translate(0px, -4px);
@@ -173,8 +130,8 @@
   box-sizing: border-box;
 
   border: solid 2px transparent;
-  border-top-color: #FFF200;
-  border-left-color: #FFF200;
+  border-top-color: #002fff;
+  border-left-color: #002fff;
   border-radius: 50%;
 
   -webkit-animation: nprogress-spinner 400ms linear infinite;
@@ -199,5 +156,3 @@
   0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-
-/* =================================== */

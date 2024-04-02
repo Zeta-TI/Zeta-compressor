@@ -1,23 +1,21 @@
-import React  from "react"
+import React from "react"
 
 import './css/style.css'
 import 'react-toastify/dist/ReactToastify.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import '@radix-ui/themes/styles.css';
 
-import { Theme } from '@radix-ui/themes';
+import { Toaster } from "../components/ui/toaster";
 import { Inter, Architects_Daughter } from 'next/font/google'
 
-import { AuthProvider } from "@/provider/AuthProvider";
-import RootProgress from "@/config-layout/nprogress";
-import ConfigAos from "@/config-layout/config-aos";
 import { Metadata } from "next";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: {
     template: '%s | Zeta',
-    default: 'Zeta | Compressores',
+    absolute: 'Zeta',
   },
+  description: 'The all-in-one video solution for online learning.',
 }
 
 const inter = Inter({
@@ -35,26 +33,24 @@ const architects_daughter = Architects_Daughter({
 
 export default function RootLayout({
   children,
-  session,
 }: {
   children: React.ReactNode,
-  session: any
-}){
+}) {
 
   return (
-    <html lang="pt">
-      <body className={`${inter.variable} ${architects_daughter.variable} font-inter antialiased bg-gray-900 text-gray-200 tracking-tight`}>
-        <Theme>
+
+    <html lang="pt" className={`${inter.variable} ${architects_daughter}`} >
+      <body className="antialiased bg-gray-900 text-gray-200 tracking-tight">
+        <Providers>
           <div className="flex flex-col min-h-screen overflow-hidden">
             <main className="grow">
-              <ConfigAos />
-              <RootProgress />
-              <AuthProvider session={session}>{children}</AuthProvider>
+              {children}
+              <Toaster />
             </main>
           </div>
-        </Theme>
+        </Providers>
       </body>
     </html>
+
   )
 }
- 

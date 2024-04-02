@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react'
 
-import { signIn } from "next-auth/react"
 import Link from 'next/link'
 import Image from 'next/image'
 import MobileMenuExp from './mobile-sign'
 import Logo from '../public/images/Zeta-Logo.png'
+import { Button } from '@/components/ui/button'
 
 export default function HeaderExp() {
 
@@ -45,14 +45,16 @@ export default function HeaderExp() {
                 </Link>
               </li>
               <li>
-                <Link href="/sign-in" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">
-                  <button onClick={() => signIn()}>Sign in</button>
+                <Link href="/auth/sign-in" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">
+                  Entrar
                 </Link>
               </li>
               <li>
-                <Link href="/sign-up" className="btn-sm text-white bg-purple-600 hover:bg-purple-700 ml-3">
-                  Sign up
-                </Link>
+                <Button className='text-white bg-purple-600 hover:bg-purple-700 ml-3'>
+                  <Link href="/auth/sign-up">
+                    Cadastre-se
+                  </Link>
+                </Button>
               </li>
             </ul>
           </nav>

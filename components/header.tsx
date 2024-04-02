@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import MobileMenu from './mobile-menu'
-import Logo from '../public/images/Zeta-Logo.png'
-import DialogAlert from './radix/alert-dialog'
+import Logo from '../../public/images/Zeta-Logo.png'
 
 export default function Header() {
 
@@ -23,7 +22,7 @@ export default function Header() {
             {/* Desktop sign in links */}
             <ul className="flex grow justify-end flex-wrap items-center">
               <li>
-                <Link href="/home"className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">
+                <Link href="/home" className="font-medium text-purple-600 hover:text-gray-200 px-4 py-3 flex items-center transition duration-150 ease-in-out">
                   Home
                 </Link>
               </li>
@@ -42,9 +41,9 @@ export default function Header() {
                   Perfil
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <DialogAlert />
-              </li>
+              </li> */}
             </ul>
           </nav>
           <MobileMenu />
