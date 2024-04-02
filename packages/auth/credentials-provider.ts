@@ -30,8 +30,6 @@ export const credentialsProvider = CredentialsProvider({
 
             const user = await res.json();
 
-            console.log(user)
-
             return user.data
         }
 

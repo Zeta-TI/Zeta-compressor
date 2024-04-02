@@ -9,7 +9,6 @@ export const dynamic = "force-dynamic";
 
 export default function SignInPage() {
 
-
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center">
       <div className="mx-auto flex w-full max-w-[350px] flex-col justify-center space-y-6">

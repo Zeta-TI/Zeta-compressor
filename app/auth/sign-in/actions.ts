@@ -16,6 +16,4 @@ export async function signInWithEmail(data: FormData) {
         password,
         redirectTo: '/dashboard',
     })
-
-
 }
