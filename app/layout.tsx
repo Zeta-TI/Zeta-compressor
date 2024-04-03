@@ -1,10 +1,8 @@
 import React from "react"
 
 import './css/style.css'
-import 'react-toastify/dist/ReactToastify.css';
 import '@radix-ui/themes/styles.css';
 
-import { Toaster } from "../components/ui/toaster";
 import { Inter, Architects_Daughter } from 'next/font/google'
 
 import { Metadata } from "next";
@@ -14,8 +12,7 @@ export const metadata: Metadata = {
   title: {
     template: '%s | Zeta',
     absolute: 'Zeta',
-  },
-  description: 'The all-in-one video solution for online learning.',
+  }
 }
 
 const inter = Inter({
@@ -45,7 +42,6 @@ export default function RootLayout({
           <div className="flex flex-col min-h-screen overflow-hidden">
             <main className="grow">
               {children}
-              <Toaster />
             </main>
           </div>
         </Providers>
