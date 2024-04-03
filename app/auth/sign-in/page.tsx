@@ -19,7 +19,7 @@ export default function SignInPage() {
               Zeta | Tecnologia & Inovação
             </h1>
             <p className="text-sm text-muted-foreground">
-              The all-in-one video solution for online learning.
+              Realize o login para acessar os dados de seu compressor.
             </p>
           </div>
         </div>
