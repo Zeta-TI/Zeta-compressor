@@ -10,8 +10,8 @@ interface UsageTimeChartProps {
 }
 
 export default function UsageTimeChart({
-    accumulated,
-    date,
+  accumulated,
+  date,
 }: UsageTimeChartProps) {
   const { resolvedTheme } = useTheme()
 
@@ -19,11 +19,11 @@ export default function UsageTimeChart({
     <Chart
       type="area"
       width="100%"
-      height={255}
+      height={355}
       options={{
         chart: {
           id: 'webhook-events-amount-chart',
-          
+
           parentHeightOffset: 0,
           sparkline: {
             enabled: false,
@@ -59,13 +59,13 @@ export default function UsageTimeChart({
           gradient:
             resolvedTheme === 'light'
               ? {
-                  opacityFrom: 0.8,
-                  opacityTo: 0.4,
-                }
+                opacityFrom: 0.8,
+                opacityTo: 0.4,
+              }
               : {
-                  opacityFrom: 0.4,
-                  opacityTo: 0.1,
-                },
+                opacityFrom: 0.4,
+                opacityTo: 0.1,
+              },
         },
         dataLabels: {
           enabled: false,

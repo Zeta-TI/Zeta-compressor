@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 import { Nfc } from 'lucide-react'
 

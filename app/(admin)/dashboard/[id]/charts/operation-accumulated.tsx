@@ -55,7 +55,7 @@ export async function OperationAccumulated({ CompressorId }: Props) {
   // const arrayDailyRuntimes = analisarDados(daily_runtime);
 
   return (
-    <Card>
+    <Card className='col-span-2'>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-base font-medium">
           Tempo de Operação Acumulado{' '}
@@ -63,7 +63,7 @@ export async function OperationAccumulated({ CompressorId }: Props) {
         </CardTitle>
         <Eye className="h-4 w-4 text-muted-foreground" />
       </CardHeader>
-      <CardContent className="h-[250px] p-0">
+      <CardContent className="h-[350px] p-0">
         <OperationAccumulatedChart accumulated={[40, 30, 40, 10, 20, 50, 30]}
           date={['15-03-2024, 17:00', '20', '10', '3', '1', '7', '20']} />
       </CardContent>
