@@ -1,6 +1,6 @@
 import React from "react";
-import { ToastContainer } from 'react-toastify';
-import ConfirmationCodeOTP from "@/components/confirmatio-code-otp";
+import { ConfirmationCodeWithEmail } from "./credentials/confirmation-code-form";
+import { ResendEmailCode } from "./resend-email/resend-email-code";
 
 export const dynamic = "force-dynamic";
 
@@ -18,11 +18,11 @@ export default function ConfirmationCode() {
 
             <div className="max-w-sm mx-auto">
               {/* FORMULÁRIO */}
-              <ConfirmationCodeOTP />
+              <ConfirmationCodeWithEmail />
+              <ResendEmailCode />
             </div>
           </div>
         </div>
-        <ToastContainer />
       </section>
     </>
   )

@@ -17,7 +17,7 @@ export default function SignUp() {
                 Zeta | Tecnologia & Inovação
               </h1>
               <p className="text-sm text-muted-foreground">
-                The all-in-one video solution for online learning.
+                Crie sua conta para poder vincular seu compressor ao sistema.
               </p>
             </div>
           </div>
