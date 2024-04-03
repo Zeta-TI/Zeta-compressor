@@ -19,7 +19,7 @@ export default function OperationAccumulatedChart({
     <Chart
       type="area"
       width="100%"
-      height={255}
+      height={355}
       options={{
         chart: {
           id: 'webhook-events-amount-chart',
