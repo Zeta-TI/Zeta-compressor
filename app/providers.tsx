@@ -11,6 +11,7 @@ import ConfigAos from '../config-layout/config-aos'
 import RootProgress from '../config-layout/nprogress'
 
 import { Theme } from '@radix-ui/themes';
+import { Toaster } from 'sonner'
 
 export function Providers({ children }: { children: ReactNode }) {
   const [queryClient] = useState(() => {
@@ -30,6 +31,7 @@ export function Providers({ children }: { children: ReactNode }) {
             <TooltipProvider>
               <ConfigAos />
               <RootProgress />
+              <Toaster position='top-right' />
               {children}
             </TooltipProvider>
           </JotaiProvider>
